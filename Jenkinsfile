@@ -1,31 +1,25 @@
 pipeline {
-   
     agent any
-    tools {
-  maven 'M2_HOME'
-}
     triggers {
-  pollSCM '* * * * *'
-}
-    
+  pollSCM('* * * * *')
+    }
     stages {
-        stage('maven package') {
+        stage('Hello') {
             steps {
-                sh 'mvn clean'
-                sh 'mvn install'
-                sh 'mvn package'
+                echo 'Hello '
+                sleep 5
             }
         }
-          stage('test') {
+          stage('build') {
             steps {
-                sh 'mvn test'
-                
+                echo 'build'
+                sleep 5
             }
         }
           stage('test') {
             steps {
                 echo 'test'
-                
+                sleep 5
             }
         }
           stage('deploy') {
@@ -35,5 +29,4 @@ pipeline {
             }
         }
     }
-}
 }
